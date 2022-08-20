@@ -1,0 +1,23 @@
+//Aug/01/2022
+void main(List<String> arguments) async {
+  foo();
+  // var future = fetchData();
+  // future.then(
+  //   (value) => print(value),
+  // );
+  fetchData()
+    ..whenComplete(() => print('Completed'))
+    ..then(
+      (value) => print(value),
+    );
+  foo();
+  // await Future.delayed(Duration(seconds: 4));
+}
+
+Future<String> fetchData() async {
+  return Future.delayed(const Duration(seconds: 3), (() => 'Pakistan'));
+}
+
+void foo() {
+  print('Foo Called');
+}

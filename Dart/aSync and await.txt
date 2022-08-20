@@ -1,0 +1,25 @@
+void main() async{
+//    sum(12,34).then((value){
+//      average(value).then((avgValue){
+//        print(avgValue);
+//      });
+//    });
+  var value = await sum(12,34);
+  var avg = await average(value);
+  print(value);
+//  foo();
+//   print('Demo');
+}
+
+Future<String> fetch() async{
+  return Future.delayed(const Duration(seconds:2), ()=>'Pakistan');
+}
+foo()async{
+   var value = await sum(12,34);
+}
+Future<num> sum(num no1,num no2){
+    return Future.value(no1+no2);
+}
+Future<num> average(num no){
+    return Future.value(no/2);
+}

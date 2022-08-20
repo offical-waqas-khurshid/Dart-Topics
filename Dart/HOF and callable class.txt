@@ -1,0 +1,57 @@
+// C# Delegate
+// delegate void DemoDelegate(int a)
+// void foo(int x){print(x);}
+// void soo(int y){print(y);}
+// DemoDelegate d = foo;
+// d.invoke(12); Or d(12);  foo is called dynamically
+// d = soo;
+// d.invoke(12); or d(12);  soo is called dynamically
+
+import 'package:dart_habibi_f8_firstdemo/employee.dart';
+
+typedef CallableDemo = void Function();
+
+Function Add(int value) {
+  return (int addNo) => value + addNo;
+}
+
+void main(List<String> arguments) {
+  Student s1 = Student();
+  Student s2 = Student();
+
+  Function f = s1;
+  s1();
+  s2();
+  foo();
+  soo();
+  CallableDemo callableDemo = s1;
+  callableDemo();
+  s1.rollNo = 12;
+  // var addition1 = Add(10); //  (int addNo) => 10 + addNo;
+  // var addition2 = Add(7);
+  // //30
+  // var result1 = addition1(20); // (int addNo) => 10 + 20;
+  // var result2 = addition2(20); // (int addNo) => value + addNo;
+  // print('Result 1: $result1 Result 2: $result2');
+}
+
+void foo() {
+  print('Foooooo');
+}
+
+void soo() {
+  print('Soo');
+}
+
+class Student {
+  int rollNo = 0;
+  void call() {
+    print('Calleable Class Student Function');
+  }
+}
+
+class Teacher {
+  String call(String st, String str) {
+    return st + str;
+  }
+}

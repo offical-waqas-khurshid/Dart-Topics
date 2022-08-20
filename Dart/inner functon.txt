@@ -1,0 +1,102 @@
+// C# Delegate
+// delegate void DemoDelegate(int a)
+// void foo(int x){print(x);}
+// void soo(int y){print(y);}
+// DemoDelegate d = foo;
+// d.invoke(12); Or d(12);  foo is called dynamically
+// d = soo;
+// d.invoke(12); or d(12);  soo is called dynamically
+
+import 'package:dart_habibi_f8_firstdemo/employee.dart';
+
+typedef IsGreaterDelegate = bool Function(Object o1, Object o2);
+typedef Comparision = bool Function(Object, Object);
+void main(List<String> arguments) {
+  // Function f = foo;
+  // f.call(12, 33);
+  var numList = [6, 3, 9, 12, 8, 9, 4];
+  var list = <Employee>[
+    Employee(name: 'Habibi', age: 23, experiance: 5, salary: 87654212.2),
+    Employee(name: 'Shahzad', age: 28, experiance: 9, salary: 65000),
+    Employee(name: 'Waqas', age: 21, experiance: 6, salary: 85000),
+    Employee(name: 'Chan', age: 18, experiance: 15, salary: 1250000),
+    Employee(name: 'Mudassar', age: 45, experiance: 7, salary: 950000),
+    Employee(name: 'Talha', age: 24, experiance: 11, salary: 87654),
+  ];
+
+  print(list);
+  // ageWiseSort(list);
+  // print(list);
+  // salaryWiseSort(list);
+  // print(list);
+  /// Local Function
+  bool ageLocal(Object o1, Object o2) {
+    return true;
+  }
+  // Local Anonymous Function
+  sort(list, (Object o1, Object o2) {
+    return (o1 as Employee).age > (o2 as Employee).age;
+  });
+  print(list);
+  // Local Anonymous inLine Function
+  sort(list, (Object o1,Object o2)=> (o1 as Employee).age > (o2 as Employee).age);
+  print(list);
+  // Local Anonymous inLine without parameter type Function
+  sort(list, (o1,o2)=>(o1 as Employee).experiance > (o2 as Employee).experiance);
+  print(list);
+  sort(numList, noGreater);
+  print(numList);
+}
+
+void foo() {}
+bool noGreater(Object o1, Object o2) {
+  return (o1 as num) > (o2 as num);
+}
+
+bool ageWiseGreater(Object o1, Object o2) {
+  return (o1 as Employee).age > (o2 as Employee).age;
+}
+
+bool salaryWiseGreater(Object o1, Object o2) {
+  return (o1 as Employee).salary > (o2 as Employee).salary;
+}
+
+bool experianceWiseGreater(Object o1, Object o2) {
+  return (o1 as Employee).experiance > (o2 as Employee).experiance;
+}
+
+void sort(List list, Comparision isGreater) {
+  for (var i = 0; i < list.length; i++) {
+    for (var j = 0; j < list.length - 1; j++) {
+      if (isGreater(list[j], list[j + 1])) {
+        var temp = list[j];
+        list[j] = list[j + 1];
+        list[j + 1] = temp;
+      }
+    }
+  }
+}
+
+void ageWiseSort(List<Employee> list) {
+  for (var i = 0; i < list.length; i++) {
+    for (var j = 0; j < list.length - 1; j++) {
+      if (list[j].age > list[j + 1].age) {
+        var temp = list[j];
+        list[j] = list[j + 1];
+        list[j + 1] = temp;
+      }
+    }
+  }
+}
+
+void salaryWiseSort(List<Employee> list) {
+  for (var i = 0; i < list.length; i++) {
+    for (var j = 0; j < list.length - 1; j++) {
+      if (list[j].salary > list[j + 1].salary) {
+        var temp = list[j];
+        list[j] = list[j + 1];
+        list[j + 1] = temp;
+      }
+    }
+  }
+}

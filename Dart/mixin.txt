@@ -1,0 +1,29 @@
+void main(List<String> arguments) {
+  Car car = Car();
+  car.maxSize = 56;
+  Cart cart = Car();
+  
+  Truck truck = Truck()
+    ..color = 'Black'
+    ..maxSize = 55;
+}
+
+mixin Cart {
+  int maxSize = 0;
+}
+mixin Roof {
+  String color = '';
+}
+
+class Vehical {}
+
+class Car extends Vehical with Cart {
+  String? make;
+}
+
+class Truck extends Vehical with Cart, Roof {}
+
+class Bus extends Vehical with Roof implements Cart {
+  @override
+  int maxSize = 0;
+}

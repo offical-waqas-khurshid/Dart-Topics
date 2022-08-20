@@ -1,0 +1,58 @@
+import 'package:dart_habibi_f8_firstdemo/employee.dart';
+
+void main(List<String> arguments) {
+  var list = [1, 2, 3, 4, 5];
+  // int result = list.reduce((value, element) {
+  //   print('Value : $value Element : $element');
+  //   return value + element;
+  // });
+  var expand = list.expand((element) => [1, 2, 3]);
+  var isEvery = list.every((element) => element <= 5);
+  print(isEvery);
+  // var listMap = list.map((e) => 'The no in lis is $e \n');
+  // print(listMap);
+  var students = <Student>[
+    Student(1, 'Hamaza', 85, [88, 75, 68]),
+    Student(2, 'Sakhawat', 76, [88, 75, 68]),
+    Student(3, 'Waqas', 45, [88, 75, 68]),
+    Student(4, 'Talha', 24, [88, 75, 68]),
+    Student(5, 'Habibi', 88, [88, 75, 68])
+  ];
+  var studentMarksCollection = students.expand((element) => element.marksss);
+  print(studentMarksCollection);
+  var passedStudents = students.where((element) => element.isPassed());
+  var failedStudents = students.where((element) => !element.isPassed());
+  var std = students.firstWhere((element) => !element.isPassed());
+  //students.reduce((value, element) => ,);
+  print(std);
+  print('Passed Student List $passedStudents');
+  print('Failed Student List $failedStudents');
+  // students.forEach((student) {
+  //   print(student);
+  // });
+  // // students.forEach((element) {
+  //   element.isPassed()
+  //       ? print(element.toString() + ' is Passed')
+  //       : print(element.toString() + ' is Failed');
+  // });
+  // var studentStringList = students.map((e) =>
+  //     e.isPassed() ? e.toString() + ' is Passed' : e.toString() + ' is Failed');
+  //print(studentStringList);
+}
+
+class Student {
+  int rollNo;
+  String name;
+  int marks;
+  List<int> marksss;
+  Student(this.rollNo, this.name, this.marks, this.marksss);
+
+  bool isPassed() {
+    return marks >= 60;
+  }
+
+  @override
+  String toString() {
+    return 'RollNo : $rollNo Name : $name Marks : $marks ';
+  }
+}

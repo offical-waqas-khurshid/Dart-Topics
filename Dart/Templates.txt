@@ -1,0 +1,40 @@
+####Mix On 
+mixin Cart on Vehical {
+  int maxSize = 0;
+}
+class Car extends Vehical with Cart {
+  String? make;
+}
+
+####Extensions 
+
+extension Conversion on String {
+  int toInt() {
+    return int.parse(this);
+  }
+
+  double toDouble() {
+    return double.parse(this);
+  }
+}
+
+void main(List<String> arguments) {
+  // LinkedList list = LinkedList<String>();
+  soo<String>();
+  soo<int>();
+  String name = 'Ali';
+  String value = '12';
+  int secondValue = value.toInt();
+  int thirdInt = '12345'.toInt();
+  double d = '123243.322'.toDouble();
+}
+
+#####TemplateType
+
+class LinkedList<T extends Student> {
+ print(T.runtimeType);
+}
+
+void soo<T>() {
+  print(T.runtimeType);
+}

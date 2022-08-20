@@ -1,0 +1,54 @@
+import 'Student.dart';
+
+typedef bool CheckNumber(Object o1, Object o2);
+void main(List<String> arguments) {
+  var list = <Student>[
+    Student(name: 'waqas', rollNo: 1, age: 23, salary: 1234, cgpa: 3),
+    Student(name: 'ali', rollNo: 2, age: 24, salary: 12345, cgpa: 2),
+    Student(name: 'khan', rollNo: 3, age: 25, salary: 12345, cgpa: 4),
+    Student(name: 'qamar', rollNo: 1, age: 27, salary: 12347, cgpa: 6),
+  ];
+
+  var list1 = [
+    Student(name: 'waqas', rollNo: 1, age: 23, salary: 1234, cgpa: 3),
+    Student(name: 'ali', rollNo: 2, age: 24, salary: 12345, cgpa: 2),
+    Student(name: 'khan', rollNo: 3, age: 25, salary: 12345, cgpa: 4),
+    Student(name: 'qamar', rollNo: 1, age: 27, salary: 12347, cgpa: 6),
+  ];
+  sort(list, sortByAge);
+  print(list);
+  sort(list, sortByRollNO);
+  print(list1);
+
+///////////////// Local anonymous function
+  sort(list, (Object o1, Object o2) {
+    return (o1 as Student).age > (o2 as Student).age;
+  });
+  ///////////// Local inLine Anonymous function
+  sort(list,
+      (Object o1, Object o2) => (o1 as Student).age > (o2 as Student).age);
+  /////////// Local Inline Anonymous Without Parameter Function
+  sort(list, (o1, o2) => (o1 as Student).age > (o2 as Student).age);
+}
+
+///////////// Sort By age
+bool sortByAge(Object o1, Object o2) {
+  return (o1 as Student).age > (o2 as Student).age;
+}
+
+bool sortByRollNO(Object o1, Object o2) {
+  return (o1 as Student).rollNo > (o2 as Student).rollNo;
+}
+
+/////////// sort method
+void sort(List list, CheckNumber checkNumber) {
+  for (int i = 0; i < list.length; i++) {
+    for (int j = i + 1; j < list.length; j++) {
+      if (checkNumber.call(list[i], list[j])) {
+        var temp = list[i];
+        list[i] = list[j];
+        list[j] = temp;
+      }
+    }
+  }
+}

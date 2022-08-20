@@ -1,0 +1,12 @@
+class Student {
+  String name;
+  num rollNo;
+  int age;
+  double salary;
+  int cgpa;
+  Student({required this.name, required this.rollNo, required this.age, required this.salary, required this.cgpa});
+  @override
+  String toString() {
+    return 'Name : $name RollNo : $rollNo Age : $age Salary: $salary CGPA: $cgpa\n';
+  }
+}

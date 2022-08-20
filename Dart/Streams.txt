@@ -1,0 +1,42 @@
+import 'dart:async';
+
+void main(List<String> args) {
+  // Stream<int> stream = generateNos(100);
+  // StreamSubscription subscription = stream.listen((event) {
+  //   print(event);
+  // });
+  // stream.listen((event) {
+
+  // });
+  // generateNos(100).listen((event) {
+  //   print(event)});
+  Stream stream = generateNumbers(200).asBroadcastStream();
+  var subscription = stream.listen((event) {
+    print(event);
+  });
+  Stream streamMapped = stream.map((event) => 'String Stream: Value : $event');
+  streamMapped.listen((event) {
+    print(event);
+  });
+  Future.delayed(const Duration(seconds: 10), () {
+    subscription.cancel();
+  });
+}
+
+Stream<int> generateNos(int length) async* {
+  for (var i = 0; i < length; i++) {
+    await Future.delayed(const Duration(seconds: 1));
+    yield i;
+  }
+}
+
+Stream<int> generateNumbers(int length) {
+  StreamController<int> streamController = StreamController<int>();
+  //StreamSink sink = streamController.sink;
+  for (var i = 0; i < length; i++) {
+    streamController.sink.add(i);
+    //sink.add(i);
+  }
+  streamController.close();
+  return streamController.stream;
+}
